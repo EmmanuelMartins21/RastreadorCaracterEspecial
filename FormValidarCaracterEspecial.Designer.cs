@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormValidarCaracterEspecial));
             this.btnImportarArquivo = new System.Windows.Forms.Button();
             this.lblResult = new System.Windows.Forms.Label();
+            this.btnTelaMostrarConteudo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnImportarArquivo
@@ -54,11 +55,25 @@
             this.lblResult.TabIndex = 1;
             this.lblResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnTelaMostrarConteudo
+            // 
+            this.btnTelaMostrarConteudo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnTelaMostrarConteudo.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnTelaMostrarConteudo.Location = new System.Drawing.Point(99, 268);
+            this.btnTelaMostrarConteudo.Name = "btnTelaMostrarConteudo";
+            this.btnTelaMostrarConteudo.Size = new System.Drawing.Size(126, 32);
+            this.btnTelaMostrarConteudo.TabIndex = 2;
+            this.btnTelaMostrarConteudo.Text = "Mostrar";
+            this.btnTelaMostrarConteudo.UseVisualStyleBackColor = false;
+            this.btnTelaMostrarConteudo.Visible = false;
+            this.btnTelaMostrarConteudo.Click += new System.EventHandler(this.btnTelaMostrarConteudo_Click);
+            // 
             // FormValidarCaracterEspecial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(331, 405);
+            this.Controls.Add(this.btnTelaMostrarConteudo);
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.btnImportarArquivo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -73,5 +88,6 @@
 
         private Button btnImportarArquivo;
         private Label lblResult;
+        private Button btnTelaMostrarConteudo;
     }
 }

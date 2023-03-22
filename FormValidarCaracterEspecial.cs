@@ -4,6 +4,8 @@ namespace RastreadorCaracterEspecial
 {
     public partial class FormValidarCaracterEspecial : Form
     {
+        string caminhoArquivo;
+        string conteudoArquivo;
         public FormValidarCaracterEspecial()
         {
             InitializeComponent();
@@ -19,13 +21,15 @@ namespace RastreadorCaracterEspecial
 
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
-                string caminhoArquivo = fileDialog.FileName;
-                string conteudoArquivo = File.ReadAllText(caminhoArquivo);
+                lblResult.Text = "";
+                caminhoArquivo = fileDialog.FileName;
+                conteudoArquivo = File.ReadAllText(caminhoArquivo);
 
                 if(ValidarConteudo(conteudoArquivo))
                 {
                     lblResult.ForeColor = Color.IndianRed;
                     lblResult.Text = "Arquivo incorreto";
+                    btnTelaMostrarConteudo.Visible = true;
                 }
                 else
                 {
@@ -38,6 +42,12 @@ namespace RastreadorCaracterEspecial
         {
             string regexCPF = @"[^\w\s]";
             return Regex.IsMatch(conteudo, regexCPF, RegexOptions.IgnoreCase);
+        }
+
+        private void btnTelaMostrarConteudo_Click(object sender, EventArgs e)
+        {
+            FormMostrarConteudo form = new FormMostrarConteudo(conteudoArquivo);
+            form.Show();
         }
     }
 }
