@@ -59,13 +59,14 @@
             // 
             // txtBoxConteudo
             // 
+            this.txtBoxConteudo.BackColor = System.Drawing.SystemColors.Menu;
+            this.txtBoxConteudo.Font = new System.Drawing.Font("Impact", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtBoxConteudo.Location = new System.Drawing.Point(1, -1);
             this.txtBoxConteudo.Multiline = true;
-            this.txtBoxConteudo.Text = conteudo;
             this.txtBoxConteudo.Name = "txtBoxConteudo";
+            this.txtBoxConteudo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtBoxConteudo.Size = new System.Drawing.Size(486, 429);
             this.txtBoxConteudo.TabIndex = 0;
-            this.txtBoxConteudo.TextChanged += new System.EventHandler(this.txtBoxConteudo_TextChanged);
             // 
             // FormMostrarConteudo
             // 
@@ -74,6 +75,7 @@
             this.ClientSize = new System.Drawing.Size(487, 428);
             this.Controls.Add(this.txtBoxConteudo);
             this.MaximizeBox = false;
+            this.txtBoxConteudo.Text =  conteudo; 
             this.Name = "FormMostrarConteudo";
             this.Text = "FormMostrarConteudo";
             this.ResumeLayout(false);

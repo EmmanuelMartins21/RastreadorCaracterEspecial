@@ -19,11 +19,8 @@ namespace RastreadorCaracterEspecial
         public FormMostrarConteudo(string conteudo)
         {
             InitializeComponent(conteudo);
+
         }
 
-        private void txtBoxConteudo_TextChanged(object sender, EventArgs e)
-        {
-            txtBoxConteudo.Text = txtBoxConteudo.Text.Trim();
-        }
     }
 }
