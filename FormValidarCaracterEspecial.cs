@@ -6,6 +6,7 @@ namespace RastreadorCaracterEspecial
     {
         string? caminhoArquivo;
         string? conteudoArquivo;
+        bool? arquivoVazio;
         public FormValidarCaracterEspecial()
         {
             InitializeComponent();
@@ -15,10 +16,12 @@ namespace RastreadorCaracterEspecial
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
 
+            //Limpando lixo de memoria
             caminhoArquivo = null;
             conteudoArquivo = null;
-            fileDialog.Filter = "Arquivos de Texto (*.txt)|*.txt|Todos os Arquivos (*.*)|*.*";
+            arquivoVazio = false;
 
+            fileDialog.Filter = "Arquivos de Texto (*.txt)|*.txt|Todos os Arquivos (*.*)|*.*";
             fileDialog.Title = "Selecione um arquivo de texto para importar";
 
             if (fileDialog.ShowDialog() == DialogResult.OK)
@@ -27,7 +30,7 @@ namespace RastreadorCaracterEspecial
                 caminhoArquivo = fileDialog.FileName;
                 conteudoArquivo = File.ReadAllText(caminhoArquivo);
 
-                if(ValidarConteudo(conteudoArquivo))
+                if(ValidarConteudo(conteudoArquivo) || arquivoVazio == true)
                 {
                     lblResult.ForeColor = Color.IndianRed;
                     lblResult.Text = "Arquivo incorreto";
@@ -43,14 +46,14 @@ namespace RastreadorCaracterEspecial
         public bool ValidarConteudo (string conteudo)
         {
             string rgxConteudo = @"[^\w\s]";
-            return string.IsNullOrEmpty(conteudo) ? false : Regex.IsMatch(conteudo, rgxConteudo, RegexOptions.IgnoreCase);
+            return (bool)(string.IsNullOrEmpty(conteudo) ? arquivoVazio = true : Regex.IsMatch(conteudo, rgxConteudo, RegexOptions.IgnoreCase));
         }
 
         private void btnTelaMostrarConteudo_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(conteudoArquivo))
             {
-                MessageBox.Show("Arquivo sem conteudo", "Cancelar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Arquivo sem conteudo", "Vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
