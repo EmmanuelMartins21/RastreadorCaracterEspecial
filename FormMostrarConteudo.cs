@@ -16,7 +16,7 @@ namespace RastreadorCaracterEspecial
         {
             InitializeComponent();
         }
-        public FormMostrarConteudo(string conteudo)
+        public FormMostrarConteudo(string? conteudo)
         {
             InitializeComponent(conteudo);
 

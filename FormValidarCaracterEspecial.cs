@@ -4,8 +4,8 @@ namespace RastreadorCaracterEspecial
 {
     public partial class FormValidarCaracterEspecial : Form
     {
-        string caminhoArquivo;
-        string conteudoArquivo;
+        string? caminhoArquivo;
+        string? conteudoArquivo;
         public FormValidarCaracterEspecial()
         {
             InitializeComponent();
@@ -15,6 +15,8 @@ namespace RastreadorCaracterEspecial
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
 
+            caminhoArquivo = null;
+            conteudoArquivo = null;
             fileDialog.Filter = "Arquivos de Texto (*.txt)|*.txt|Todos os Arquivos (*.*)|*.*";
 
             fileDialog.Title = "Selecione um arquivo de texto para importar";
@@ -40,14 +42,21 @@ namespace RastreadorCaracterEspecial
         } 
         public bool ValidarConteudo (string conteudo)
         {
-            string regexCPF = @"[^\w\s]";
-            return Regex.IsMatch(conteudo, regexCPF, RegexOptions.IgnoreCase);
+            string rgxConteudo = @"[^\w\s]";
+            return string.IsNullOrEmpty(conteudo) ? false : Regex.IsMatch(conteudo, rgxConteudo, RegexOptions.IgnoreCase);
         }
 
         private void btnTelaMostrarConteudo_Click(object sender, EventArgs e)
         {
-            FormMostrarConteudo form = new FormMostrarConteudo(conteudoArquivo);
-            form.Show();
+            if (string.IsNullOrEmpty(conteudoArquivo))
+            {
+                MessageBox.Show("Arquivo sem conteudo", "Cancelar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                FormMostrarConteudo form = new FormMostrarConteudo(conteudoArquivo);
+                form.Show();
+            }            
         }
     }
 }
